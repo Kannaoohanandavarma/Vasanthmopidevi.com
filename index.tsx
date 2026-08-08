@@ -6,7 +6,6 @@ import {
   ShieldCheck, LayoutDashboard, User, MessageCircle
 } from 'lucide-react';
 
-
 const CONTACT_INFO = {
   name: "Mopidevi Vasanth Kumar",
   title: "Vijayawada Local Real Estate Consultant",
@@ -108,8 +107,7 @@ const generateWhatsAppLink = (message) => {
   return `https://wa.me/${CONTACT_INFO.phone}?text=${encodeURIComponent(message)}`;
 };
 
-
-const Button = ({ children, variant = 'primary', className = '', onClick, href }) => {
+const Button = ({ children, variant = 'primary', className = '', onClick, href, type = 'button' }) => {
   const baseStyle = "inline-flex items-center justify-center px-6 py-3 font-medium transition-all duration-300 rounded-sm";
   const variants = {
     primary: "bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-amber-600/30",
@@ -128,7 +126,7 @@ const Button = ({ children, variant = 'primary', className = '', onClick, href }
     );
   }
   return (
-    <button onClick={onClick} className={combinedClass}>
+    <button type={type} onClick={onClick} className={combinedClass}>
       {children}
     </button>
   );
@@ -207,7 +205,6 @@ const PropertyCard = ({ property, onViewDetails }) => (
     </div>
   </div>
 );
-
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -365,11 +362,11 @@ export default function App() {
           <div>
             <h4 className="text-lg font-bold mb-6 flex items-center gap-2"><div className="w-2 h-2 bg-amber-600 rounded-full"></div> Property Types</h4>
             <ul className="space-y-3 text-gray-400 text-sm">
-              <li className="hover:text-amber-500 cursor-pointer transition-colors">Premium Apartments</li>
-              <li className="hover:text-amber-500 cursor-pointer transition-colors">Luxury Villas</li>
-              <li className="hover:text-amber-500 cursor-pointer transition-colors">Residential Houses</li>
-              <li className="hover:text-amber-500 cursor-pointer transition-colors">Commercial Spaces</li>
-              <li className="hover:text-amber-500 cursor-pointer transition-colors">Open Plots</li>
+              <li className="hover:text-amber-500 cursor-pointer transition-colors" onClick={() => navigateTo('properties')}>Premium Apartments</li>
+              <li className="hover:text-amber-500 cursor-pointer transition-colors" onClick={() => navigateTo('properties')}>Luxury Villas</li>
+              <li className="hover:text-amber-500 cursor-pointer transition-colors" onClick={() => navigateTo('properties')}>Residential Houses</li>
+              <li className="hover:text-amber-500 cursor-pointer transition-colors" onClick={() => navigateTo('properties')}>Commercial Spaces</li>
+              <li className="hover:text-amber-500 cursor-pointer transition-colors" onClick={() => navigateTo('properties')}>Open Plots</li>
             </ul>
           </div>
 
@@ -430,7 +427,6 @@ export default function App() {
       </a>
     </div>
   );
-
 
   const HomePage = () => (
     <div className="animate-in fade-in duration-500">
@@ -634,7 +630,6 @@ export default function App() {
     </div>
   );
 
-
   const PropertiesPage = () => {
     const [filter, setFilter] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
@@ -711,7 +706,6 @@ export default function App() {
       </div>
     );
   };
-
 
   const PropertyDetailsPage = () => {
     if (!selectedProperty) return null;
@@ -838,7 +832,7 @@ export default function App() {
                   </Button>
                 </div>
                 
-                <p className="text-xs text-center text-gray-400 mt-6 mt-4 border-t border-gray-100 pt-4">
+                <p className="text-xs text-center text-gray-400 mt-6 pt-4 border-t border-gray-100">
                   Please mention the property title when calling.
                 </p>
               </div>
@@ -849,7 +843,6 @@ export default function App() {
       </div>
     );
   };
-
 
   const SellPropertyPage = () => {
     const [formData, setFormData] = useState({
@@ -975,7 +968,6 @@ export default function App() {
       </div>
     );
   };
-
 
   const AboutPage = () => (
     <div className="pt-24 pb-20 bg-white min-h-screen animate-in fade-in duration-500">
@@ -1124,7 +1116,6 @@ export default function App() {
     );
   };
 
-  
   const AdminDashboard = () => (
     <div className="pt-24 pb-20 bg-gray-100 min-h-screen">
       <div className="container mx-auto px-4 lg:px-8">
@@ -1208,7 +1199,6 @@ export default function App() {
       </div>
     </div>
   );
-
 
   return (
     <div className="font-sans text-gray-900 bg-white selection:bg-amber-200">
